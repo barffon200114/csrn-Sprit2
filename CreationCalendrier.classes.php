@@ -4,7 +4,9 @@
 
 
 class Calendar {  
-     
+    
+    include 'GestionJourneesStageBD.classes.php';
+
     /**
      * Constructor
      */
@@ -144,11 +146,11 @@ class Calendar {
         *  Sort un array des date de stage selon l'étudiant
         *   Foreach(Date dans array)
         * */
-         if ($this->currentDate == "2020-10-16"){
+         if ($this->currentDate == chercherStage('George',$this->currentDate)){
          return '<li onclick="location.href=\''.$lienPage.'\'" id="li-Stage" style="background-color:#99FF99" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
            ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';}
          else {
-            return '<li onclick="location.href=\''.$lienPage.'\'" id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
+            return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
                 ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';}
         
           
