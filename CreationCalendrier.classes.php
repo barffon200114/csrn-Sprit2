@@ -6,6 +6,9 @@
 class Calendar {  
     
     include 'GestionJourneesStageBD.classes.php';
+    include GestionCalendrier.js;
+
+    $etudiant = 'AAAA1111';
 
     /**
      * Constructor
@@ -29,7 +32,6 @@ class Calendar {
      
     private $naviHref= null;
 
-    private $modif = false;
      
     /********************* PUBLIC **********************/  
         
@@ -69,8 +71,7 @@ class Calendar {
          
         $this->daysInMonth=$this->_daysInMonth($month,$year);  
          
-        $content='<input type="checkbox" id="cb-Modif" name="cb-Modif" value="Modif" onchange="$modif=this.value"><label for="cb-Modif"> Modification des jours de stage </label><br>'.
-                '<div id="calendar">'.
+        $content='<div id="calendar">'.
                         '<div class="box">'.
                         $this->_createNavi().
                         '</div>'.
@@ -137,7 +138,7 @@ class Calendar {
         //    À Ajouter
         // Si date actuel (currentDate) est dans BD ,"id=li-Stage", sinon jour normal
         
-        $lienPage = 'inscrireMonTemps.php?date='.$this->currentDate;
+        $lienPage = 'inscrireMonTemps.php?date='.$this->currentDate.'&etudiant='.$etudiant;
 
 
 
@@ -146,7 +147,7 @@ class Calendar {
         *  Sort un array des date de stage selon l'étudiant
         *   Foreach(Date dans array)
         * */
-         if ($this->currentDate == chercherStage('George',$this->currentDate)){
+         if ($this->currentDate == ChercherStage('George',$this->currentDate)){
          return '<li onclick="location.href=\''.$lienPage.'\'" id="li-Stage" style="background-color:#99FF99" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
            ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';}
          else {
