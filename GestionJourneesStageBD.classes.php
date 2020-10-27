@@ -5,19 +5,21 @@ class GestionJournees {
     var $connexion;
     var $reponse;
 
-    public function __contruct(){
-        $this->connexion = new PDO(DNS, UTILISATEUR, MDP);
+    public function __construct(){
+        $this->connexion = new PDO(DSN , UTILISATEUR , MDP);
+        var_dump($this->connexion);
     }
 
-    public function ChercherStage(_eleve, _jour ){
-        $this->reponse = $this->connexion->prepare('SELECT date FROM JourneeStage WHERE Etudian ='. _eleve .' AND date = '._jour.' ;');
+    public function ChercherStage($_eleve, $_jour ){
+        $this->reponse = $this->connexion->prepare('SELECT journee FROM tbl_journeesstage WHERE fk_utilisateur ='. $_eleve .' AND journee = '.$_jour.' ;');
         $this->reponse->execute();
         return $this->reponse->fetch();
+        var_dump($this->connexion);
     }
 
 
-    public function AjouterStage(_eleve, _jour ){
-        $this->reponse = $this->connexion->prepare('SELECT date FROM JourneeStage WHERE Etudian ='. _eleve .' AND date = '._jour.' ;');
+    public function AjouterStage($_eleve, $_jour ){
+        $this->reponse = $this->connexion->prepare('SELECT journee FROM tbl_journeesstage WHERE fk_utilisateur ='. $_eleve .' AND journee = '.$_jour.' ;');
         $this->reponse->execute();
         return $this->reponse->fetch();
     }
