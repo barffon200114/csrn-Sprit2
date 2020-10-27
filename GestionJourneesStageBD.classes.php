@@ -7,7 +7,6 @@ class GestionJournees {
 
     public function __construct(){
         $this->connexion = new PDO(DSN , UTILISATEUR , MDP);
-        var_dump($this->connexion);
     }
 
     public function ChercherStage($_eleve, $_jour ){
