@@ -14,7 +14,6 @@ class GestionJournees {
         $this->reponse = $this->connexion->prepare('SELECT journee FROM tbl_journeesstage WHERE fk_utilisateur ='. $_eleve .' AND journee = '.$_jour.' ;');
         $this->reponse->execute();
         return $this->reponse->fetch();
-        var_dump($this->connexion);
     }
 
 

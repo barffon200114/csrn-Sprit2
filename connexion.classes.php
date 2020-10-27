@@ -6,7 +6,7 @@ class BaseDeDonneesCo extends PDO{
     var $reponse;
 
 
-    public function __contruct(){
+    public function __construct(){
         $this->connexion = new PDO(DNS, UTILISATEUR, MDP);
     }
 
