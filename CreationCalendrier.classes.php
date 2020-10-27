@@ -6,12 +6,14 @@ include 'GestionJourneesStageBD.classes.php';
 include 'GestionCalendrier.js';
 
 
+
 class Calendar {  
     
     var $GestionJour; 
 
+    
 
-   var $etudiant = 'TEST0000';
+    var $etudiant = 'TEST0000';
 
     /**
      * Constructor
@@ -23,6 +25,8 @@ class Calendar {
      
     /********************* PROPERTY ********************/  
     private $dayLabels = array("Lun","Mar","Mer","Jeu","Ven","Sam","Dim");
+
+    private $mounthLabels = array('jan'=>'janvier','feb'=>'février','mar'=>'mars','apr'=>'avril','may'=>'mai','jun'=>'juin','jul'=>'juillet','aug'=>'août','sep'=>'septembre','oct'=>'octobre','nov'=>'novembre','dec'=>'décembre');
      
     private $currentYear=0;
      
@@ -174,10 +178,12 @@ class Calendar {
          
         $preYear = $this->currentMonth==1?intval($this->currentYear)-1:$this->currentYear;
          
+        setlocale(LC_TIME,"fr", "fr_CA", "fr_FR", "French Canada");
+        
         return
             '<div class="header">'.
                 '<a class="prev" href="'.$this->naviHref.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Précédent</a>'.
-                    '<span class="title">'.date('M Y',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
+                    '<span class="title">'.utf8_encode(strftime('%b %Y',strtotime($this->currentYear.'-'.$this->currentMonth.'-1'))).'</span>'.
                 '<a class="next" href="'.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Prochain</a>'.
             '</div>';
     }
