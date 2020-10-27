@@ -11,7 +11,7 @@ class Calendar {
     var $GestionJour; 
 
 
-   var $etudiant = 'AAAA1111';
+   var $etudiant = 'TETS0000';
 
     /**
      * Constructor
